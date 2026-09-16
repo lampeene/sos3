@@ -1,0 +1,48 @@
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - /app/logs/app-*.log
+      - /app/logs/error-*.log
+      - /app/logs/app.log
+      - /app/logs/error.log
+    exclude_files: ['\.gz$', '\.audit\.json$']
+    json.keys_under_root: true
+    json.add_error_key: true
+    json.message_key: message
+    fields:
+      service: sos-points-api
+      env: ${NODE_ENV:production}
+    fields_under_root: false
+    scan_frequency: 2s
+    harvester_buffer_size: 16384
+    max_bytes: 10485760
+    close_inactive: 30s
+    close_renamed: true
+    close_removed: true
+    ignore_older: 72h
+    clean_inactive: 120h
+
+queue.mem:
+  events: 4096
+  flush.min_events: 512
+  flush.timeout: 1s
+
+processors:
+  - add_host_metadata:
+      when.not.contains.tags: forwarded
+  - drop_fields:
+      fields: ["agent", "ecs", "input", "host.name"]
+      ignore_missing: true
+
+output.logstash:
+  hosts: ["${LOGSTASH_HOST:logstash}:5044"]
+  bulk_max_size: 2048
+  worker: 2
+  loadbalance: true
+  slow_start: true
+  ttl: 30s
+  pipelining: 2
+
+logging.level: warning
+logging.to_files: false

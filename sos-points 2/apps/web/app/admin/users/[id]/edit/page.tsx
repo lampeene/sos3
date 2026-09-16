@@ -1,0 +1,246 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import { useRouter, useParams } from 'next/navigation';
+import ProtectedRoute from '@/components/auth/ProtectedRoute';
+import AdminLayout from '@/components/admin/AdminLayout';
+import { usersApi } from '@/lib/api';
+import { getToken } from '@/lib/auth';
+
+function EditUserContent() {
+  const router = useRouter();
+  const params = useParams();
+  const id = Number(params.id);
+
+  const [loading, setLoading] = useState(false);
+  const [loadingData, setLoadingData] = useState(true);
+  const [error, setError] = useState('');
+  const [form, setForm] = useState({
+    email: '',
+    password: '',
+    firstName: '',
+    lastName: '',
+    gender: '',
+    phone: '',
+    mobile: '',
+    city: '',
+    zipCode: '',
+    roleId: 2,
+  });
+
+  useEffect(() => {
+    const token = getToken();
+    if (!token || !id) return;
+
+    usersApi
+      .findOne(id, token)
+      .then((user) => {
+        setForm({
+          email: user.email || '',
+          password: '',
+          firstName: user.firstName || '',
+          lastName: user.lastName || '',
+          gender: user.gender || '',
+          phone: user.phone || '',
+          mobile: user.mobile || '',
+          city: user.city || '',
+          zipCode: user.zipCode || '',
+          roleId: user.roleId || user.role?.id || 2,
+        });
+      })
+      .catch((err) => setError(err.message || 'Utilisateur introuvable'))
+      .finally(() => setLoadingData(false));
+  }, [id]);
+
+  const update = (field: string, value: string | number) => {
+    setForm((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    try {
+      const token = getToken();
+      if (!token) throw new Error('Non authentifié');
+
+      const data: any = {
+        email: form.email,
+        firstName: form.firstName,
+        lastName: form.lastName,
+        gender: form.gender || undefined,
+        phone: form.phone || undefined,
+        mobile: form.mobile || undefined,
+        city: form.city || undefined,
+        zipCode: form.zipCode || undefined,
+        roleId: Number(form.roleId),
+      };
+      if (form.password) {
+        data.password = form.password;
+      }
+
+      await usersApi.update(id, data, token);
+      router.push('/admin/users');
+    } catch (err: any) {
+      setError(err.displayMessage || err.message || 'Erreur lors de la mise à jour');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loadingData) {
+    return (
+      <AdminLayout title="Modifier l’utilisateur">
+        <p className="text-gray-500">Chargement...</p>
+      </AdminLayout>
+    );
+  }
+
+  return (
+    <AdminLayout title="Modifier l’utilisateur">
+      <form onSubmit={handleSubmit} className="max-w-2xl space-y-6">
+        {error && (
+          <div className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">
+            {error}
+          </div>
+        )}
+
+        <div className="rounded-xl bg-white p-6 shadow-sm border border-gray-100 space-y-4">
+          <h2 className="font-semibold text-lg">Identité</h2>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Prénom *</label>
+              <input
+                required
+                value={form.firstName}
+                onChange={(e) => update('firstName', e.target.value)}
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Nom *</label>
+              <input
+                required
+                value={form.lastName}
+                onChange={(e) => update('lastName', e.target.value)}
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+              <input
+                type="email"
+                required
+                value={form.email}
+                onChange={(e) => update('email', e.target.value)}
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Nouveau mot de passe
+              </label>
+              <input
+                type="password"
+                minLength={6}
+                value={form.password}
+                onChange={(e) => update('password', e.target.value)}
+                placeholder="Laisser vide pour ne pas changer"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Genre</label>
+              <select
+                value={form.gender}
+                onChange={(e) => update('gender', e.target.value)}
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+              >
+                <option value="">—</option>
+                <option value="MALE">Homme</option>
+                <option value="FEMALE">Femme</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Rôle *</label>
+              <select
+                required
+                value={form.roleId}
+                onChange={(e) => update('roleId', Number(e.target.value))}
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+              >
+                <option value={1}>Admin</option>
+                <option value={2}>User</option>
+                <option value={3}>Psy</option>
+                <option value={4}>Trainer</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div className="rounded-xl bg-white p-6 shadow-sm border border-gray-100 space-y-4">
+          <h2 className="font-semibold text-lg">Contact</h2>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Téléphone</label>
+              <input
+                value={form.phone}
+                onChange={(e) => update('phone', e.target.value)}
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Mobile</label>
+              <input
+                value={form.mobile}
+                onChange={(e) => update('mobile', e.target.value)}
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Ville</label>
+              <input
+                value={form.city}
+                onChange={(e) => update('city', e.target.value)}
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Code postal</label>
+              <input
+                value={form.zipCode}
+                onChange={(e) => update('zipCode', e.target.value)}
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="flex gap-4">
+          <button
+            type="submit"
+            disabled={loading}
+            className="rounded-lg bg-[#08717e] px-6 py-3 font-semibold text-white hover:bg-teal-800 disabled:opacity-50"
+          >
+            {loading ? 'Enregistrement...' : 'Enregistrer'}
+          </button>
+          <a
+            href="/admin/users"
+            className="rounded-lg border px-6 py-3 font-medium text-gray-700 hover:bg-gray-50"
+          >
+            Annuler
+          </a>
+        </div>
+      </form>
+    </AdminLayout>
+  );
+}
+
+export default function EditUserPage() {
+  return (
+    <ProtectedRoute adminOnly>
+      <EditUserContent />
+    </ProtectedRoute>
+  );
+}

@@ -1,0 +1,258 @@
+// Prisma schema for SOS Permis à Points (v2)
+// Based on the original Sequelize models, cleaned and improved
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ========== ENUMS ==========
+
+enum Gender {
+  MALE
+  FEMALE
+}
+
+enum PaymentStatus {
+  CREATED
+  SUCCESS
+  FAILURE
+}
+
+enum CaseNumber {
+  CASE_1 // Points restants uniquement
+  CASE_2 // Lettre 48N
+  CASE_3 // Ordonnance / Décision judiciaire
+  CASE_4 // Alternative aux poursuites
+}
+
+// ========== MODELS ==========
+
+model Role {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  users     User[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("roles")
+}
+
+model User {
+  id          Int       @id @default(autoincrement())
+  email       String    @unique
+  password    String
+  firstName   String
+  lastName    String
+  gender      Gender?
+  birthName   String?
+  birthDate   DateTime? @db.Date
+  birthCity   String?
+  address1    String?
+  address2    String?
+  zipCode     String?
+  city        String?
+  country     String?   @default("France")
+  phone       String?
+  mobile      String?
+  validated   Boolean   @default(false)
+  roleId      Int
+  role        Role      @relation(fields: [roleId], references: [id])
+  
+  // Geo
+  latitude    Float?
+  longitude   Float?
+
+  registrations Registration[]
+  comments      Comment[]
+  
+  // Relations for trainers / psychologists
+  sessionsAsPsy     Session[] @relation("SessionPsy")
+  sessionsAsTrainer Session[] @relation("SessionTrainer")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Place {
+  id              Int      @id @default(autoincrement())
+  name            String
+  address1        String
+  address2        String?
+  zipcode         String
+  city            String
+  region          String
+  description     String?  @db.Text
+  latitude        Float?
+  longitude       Float?
+  
+  // Certificat
+  certifLastName  String
+  certifFirstName String
+  certifNumber    String
+  fileName        String
+  url             String
+  mimeType        String?
+
+  sessions Session[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("places")
+}
+
+model Session {
+  id               Int      @id @default(autoincrement())
+  date             DateTime @db.Date
+  price            Float
+  maxRegistration  Int      @default(20)
+  minRegistration  Int      @default(6)
+  usersCount       Int      @default(0)
+  status           Boolean  @default(false) // true = validated (min reached)
+  
+  beginMorning     DateTime @default(dbgenerated("'08:30:00'::time")) @db.Time
+  endMorning       DateTime @default(dbgenerated("'12:30:00'::time")) @db.Time
+  beginAfternoon   DateTime @default(dbgenerated("'13:30:00'::time")) @db.Time
+  endAfternoon     DateTime @default(dbgenerated("'16:30:00'::time")) @db.Time
+
+  placeId   Int
+  place     Place @relation(fields: [placeId], references: [id])
+  
+  psyId     Int?
+  psy       User? @relation("SessionPsy", fields: [psyId], references: [id])
+  
+  trainerId Int?
+  trainer   User? @relation("SessionTrainer", fields: [trainerId], references: [id])
+
+  registrations Registration[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("sessions")
+}
+
+model Registration {
+  id         Int        @id @default(autoincrement())
+  caseNumber CaseNumber
+  noLicense  Boolean    @default(false)
+
+  sessionId Int
+  session   Session @relation(fields: [sessionId], references: [id])
+  
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
+
+  drivingLicense DrivingLicense?
+  docCat2        DocCat2?
+  docCat3Cat4    DocCat3Cat4?
+  payment        Payment?
+  comments       Comment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("registrations")
+}
+
+model DrivingLicense {
+  id                   Int      @id @default(autoincrement())
+  drivingLicenseNumber String
+  placeOfIssue         String
+  dateOfIssue          DateTime @db.Date
+  numberOfPoints       Int?
+  fileName             String
+  url                  String
+  mimeType             String?
+
+  registrationId Int           @unique
+  registration   Registration  @relation(fields: [registrationId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("driving_licenses")
+}
+
+model DocCat2 {
+  id            Int      @id @default(autoincrement())
+  infracPlace   String
+  infracDate    DateTime @db.Date
+  infracTime    DateTime
+  infracReason  String
+  letterNumber  String
+  letterCode    String
+  numPoints48n  Int
+  receiptDate   DateTime @db.Date
+  fileName      String
+  url           String
+  mimeType      String?
+
+  registrationId Int           @unique
+  registration   Registration  @relation(fields: [registrationId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("doc_cat2")
+}
+
+model DocCat3Cat4 {
+  id              Int      @id @default(autoincrement())
+  dateOfJudgement DateTime @db.Date
+  judgementNumber String
+  fileName        String
+  url             String
+  mimeType        String?
+
+  registrationId Int           @unique
+  registration   Registration  @relation(fields: [registrationId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("doc_cat3_cat4")
+}
+
+model Payment {
+  id                Int           @id @default(autoincrement())
+  amount            Int           // in cents
+  status            PaymentStatus @default(CREATED)
+  tracker           String?       @unique @db.Uuid
+  payId             String?
+  payUrl            String?
+  payFailureCode    String?
+  payFailureMessage String?
+
+  registrationId Int           @unique
+  registration   Registration  @relation(fields: [registrationId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("payments")
+}
+
+model Comment {
+  id      Int    @id @default(autoincrement())
+  rating  Int    @default(5)
+  content String @db.Text
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
+
+  registrationId Int
+  registration   Registration @relation(fields: [registrationId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("comments")
+}

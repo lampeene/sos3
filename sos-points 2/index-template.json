@@ -1,0 +1,55 @@
+{
+  "index_patterns": ["sos-points-logs-*"],
+  "template": {
+    "settings": {
+      "number_of_shards": 1,
+      "number_of_replicas": 0,
+      "index.refresh_interval": "30s",
+      "index.translog.durability": "async",
+      "index.translog.sync_interval": "30s",
+      "index.translog.flush_threshold_size": "512mb",
+      "index.merge.scheduler.max_thread_count": 1,
+      "index.codec": "best_compression",
+      "index.mapping.total_fields.limit": 100,
+      "index.query.default_field": ["message", "log_message"],
+      "index.lifecycle.name": "sos-points-logs-policy",
+      "index.lifecycle.rollover_alias": "sos-points-logs"
+    },
+    "mappings": {
+      "dynamic": "strict",
+      "properties": {
+        "@timestamp": { "type": "date" },
+        "timestamp": { "type": "date" },
+        "app_timestamp": { "type": "date" },
+        "level": { "type": "keyword", "ignore_above": 16 },
+        "severity": { "type": "keyword", "ignore_above": 16 },
+        "message": { "type": "text", "norms": false, "index_options": "freqs" },
+        "log_message": { "type": "text", "norms": false, "index_options": "freqs" },
+        "service": { "type": "keyword", "ignore_above": 64 },
+        "env": { "type": "keyword", "ignore_above": 32 },
+        "app_env": { "type": "keyword", "ignore_above": 32 },
+        "version": { "type": "keyword", "ignore_above": 32 },
+        "app_version": { "type": "keyword", "ignore_above": 32 },
+        "context": { "type": "keyword", "ignore_above": 64 },
+        "event": { "type": "keyword", "ignore_above": 128 },
+        "requestId": { "type": "keyword", "ignore_above": 64 },
+        "userId": { "type": "long" },
+        "httpMethod": { "type": "keyword", "ignore_above": 16 },
+        "httpPath": { "type": "keyword", "ignore_above": 256 },
+        "path": { "type": "keyword", "ignore_above": 256 },
+        "statusCode": { "type": "short" },
+        "durationMs": { "type": "integer" },
+        "ip": { "type": "ip" },
+        "userAgent": { "type": "text", "norms": false, "index_options": "docs" },
+        "stack": { "type": "text", "norms": false, "index": false },
+        "contentLength": { "type": "integer" },
+        "log_file": { "type": "keyword", "ignore_above": 512 }
+      }
+    }
+  },
+  "priority": 200,
+  "version": 2,
+  "_meta": {
+    "description": "SOS Points logs – optimized for bulk indexing throughput"
+  }
+}

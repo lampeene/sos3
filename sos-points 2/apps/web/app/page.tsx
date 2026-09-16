@@ -1,0 +1,175 @@
+export default function HomePage() {
+  return (
+    <div className="min-h-screen">
+      {/* Header / Navbar */}
+      <header className="bg-[#08717e] text-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex h-16 items-center justify-between">
+            <div className="flex items-center gap-3">
+              <span className="text-2xl font-bold tracking-tight">
+                SOS <span className="text-[#f9be00]">Permis à points</span>
+              </span>
+            </div>
+            <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
+              <a href="/" className="hover:text-[#f9be00] transition">
+                Accueil
+              </a>
+              <a href="/stages" className="hover:text-[#f9be00] transition">
+                Stages
+              </a>
+              <a href="/about" className="hover:text-[#f9be00] transition">
+                À propos
+              </a>
+              <a
+                href="/login"
+                className="rounded-md bg-[#f9be00] px-4 py-2 text-[#08717e] font-semibold hover:bg-yellow-400 transition"
+              >
+                Connexion
+              </a>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      {/* Hero */}
+      <section className="relative bg-gradient-to-br from-[#08717e] to-[#065a64] text-white">
+        <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+          <div className="max-w-2xl">
+            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+              Récupérez vos points
+              <span className="block text-[#f9be00]">en toute confiance</span>
+            </h1>
+            <p className="mt-6 text-lg leading-8 text-teal-100">
+              Stages de récupération de points agréés par les préfectures.
+              Des centres partout en France, des formateurs expérimentés.
+            </p>
+            <div className="mt-10 flex flex-wrap gap-4">
+              <a
+                href="/stages"
+                className="rounded-lg bg-[#f9be00] px-6 py-3 text-base font-semibold text-[#08717e] shadow-lg hover:bg-yellow-400 transition"
+              >
+                Trouver un stage
+              </a>
+              <a
+                href="/about"
+                className="rounded-lg border-2 border-white/30 px-6 py-3 text-base font-semibold text-white hover:bg-white/10 transition"
+              >
+                Comment ça marche ?
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Steps */}
+      <section className="py-20 bg-gray-50">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-gray-900">
+              Comment récupérer vos points ?
+            </h2>
+            <p className="mt-4 text-lg text-gray-600">
+              Un parcours simple en 3 étapes
+            </p>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-3">
+            {[
+              {
+                step: '1',
+                title: 'Choisissez votre stage',
+                desc: 'Sélectionnez une date et un lieu près de chez vous parmi nos centres agréés.',
+              },
+              {
+                step: '2',
+                title: 'Inscrivez-vous en ligne',
+                desc: 'Remplissez votre dossier (permis, documents) et réglez en toute sécurité.',
+              },
+              {
+                step: '3',
+                title: 'Récupérez vos points',
+                desc: 'Participez au stage de 2 jours et récupérez jusqu’à 4 points sur votre permis.',
+              },
+            ].map((item) => (
+              <div
+                key={item.step}
+                className="relative rounded-2xl bg-white p-8 shadow-sm border border-gray-100"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#f9be00] text-xl font-bold text-[#08717e]">
+                  {item.step}
+                </div>
+                <h3 className="mt-6 text-xl font-semibold text-gray-900">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-gray-600 leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="bg-[#08717e] py-16">
+        <div className="mx-auto max-w-4xl px-4 text-center">
+          <h2 className="text-3xl font-bold text-white">
+            Prêt à récupérer vos points ?
+          </h2>
+          <p className="mt-4 text-teal-100 text-lg">
+            Des places disponibles dans toute la France. Inscrivez-vous dès maintenant.
+          </p>
+          <a
+            href="/stages"
+            className="mt-8 inline-block rounded-lg bg-[#f9be00] px-8 py-4 text-lg font-semibold text-[#08717e] hover:bg-yellow-400 transition shadow-lg"
+          >
+            Voir les prochains stages
+          </a>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-[#575756] text-white py-12">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-8 md:grid-cols-3">
+            <div>
+              <h3 className="text-lg font-bold">SOS Permis à points</h3>
+              <p className="mt-3 text-sm text-gray-300">
+                Stages de récupération de points agréés par les préfectures.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-semibold">Contact</h4>
+              <p className="mt-3 text-sm text-gray-300">
+                07 82 97 72 97<br />
+                Du lundi au vendredi<br />
+                9h00 – 18h00
+              </p>
+            </div>
+            <div>
+              <h4 className="font-semibold">Liens utiles</h4>
+              <ul className="mt-3 space-y-2 text-sm text-gray-300">
+                <li>
+                  <a href="/stages" className="hover:text-[#f9be00]">
+                    Stages
+                  </a>
+                </li>
+                <li>
+                  <a href="/about" className="hover:text-[#f9be00]">
+                    À propos
+                  </a>
+                </li>
+                <li>
+                  <a href="/login" className="hover:text-[#f9be00]">
+                    Espace client
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="mt-10 border-t border-gray-600 pt-6 text-center text-sm text-gray-400">
+            © {new Date().getFullYear()} SOS Permis à points – Tous droits réservés
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}

@@ -1,0 +1,18 @@
+# Logstash performance settings
+# Mount as /usr/share/logstash/config/logstash.yml or set via env
+
+pipeline.workers: 2
+pipeline.batch.size: 250
+pipeline.batch.delay: 50
+
+# Persistent queue – absorb spikes without blocking Filebeat
+queue.type: persisted
+queue.max_bytes: 1gb
+queue.checkpoint.writes: 1024
+
+# Dead letter queue for failed events
+dead_letter_queue.enable: true
+dead_letter_queue.max_bytes: 256mb
+
+xpack.monitoring.enabled: false
+config.reload.automatic: false

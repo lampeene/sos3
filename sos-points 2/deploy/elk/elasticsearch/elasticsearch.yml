@@ -1,0 +1,18 @@
+# Elasticsearch indexing-oriented settings (single-node / staging example)
+# For production, use node roles and cluster-level tuning.
+
+cluster.name: sos-points-logs
+network.host: 0.0.0.0
+
+# Indexing throughput
+indices.memory.index_buffer_size: 20%
+indices.queries.cache.size: 5%
+
+# Thread pools – more write capacity
+thread_pool.write.queue_size: 1000
+
+# Translog / refresh defaults overridden per-index via template
+action.auto_create_index: true
+
+# Disable disk-based shard allocation watermark issues on small disks (dev only)
+# cluster.routing.allocation.disk.threshold_enabled: false
