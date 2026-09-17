@@ -27,7 +27,6 @@ export class UsersService {
         where,
         skip: params?.skip,
         take: params?.take || 20,
-        include: { role: { select: { name: true } } },
         orderBy: { lastName: 'asc' },
         select: {
           id: true,

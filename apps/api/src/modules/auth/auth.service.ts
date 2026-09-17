@@ -47,7 +47,6 @@ export class AuthService {
   async validateUser(userId: number) {
     return prisma.user.findUnique({
       where: { id: userId },
-      include: { role: true },
       select: {
         id: true,
         email: true,
