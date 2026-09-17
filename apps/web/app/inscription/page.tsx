@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { sessionsApi, registrationsApi, paymentsApi } from '@/lib/api';
 import { getToken, isAuthenticated, setAuth } from '@/lib/auth';
@@ -21,7 +21,7 @@ type SessionInfo = {
   place: { name: string; city: string };
 };
 
-export default function InscriptionPage() {
+function InscriptionForm() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const sessionId = searchParams.get('sessionId');
@@ -504,5 +504,13 @@ export default function InscriptionPage() {
         </div>
       </main>
     </div>
+  );
+}
+
+export default function InscriptionPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Chargement...</div>}>
+      <InscriptionForm />
+    </Suspense>
   );
 }
