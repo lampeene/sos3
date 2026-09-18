@@ -112,12 +112,6 @@ function PaymentSuccessContent() {
   );
 }
 
-  return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Chargement...</div>}>
-      <PaymentSuccessContent />
-    </Suspense>
-  );
-}
 
 export default function PaymentSuccessPage() {
   return (
