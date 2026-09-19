@@ -1,3 +1,7 @@
+'use client';
+
+import UpcomingSessions from '@/components/stages/UpcomingSessions';
+
 export default function HomePage() {
   return (
     <div className="min-h-screen">
@@ -111,7 +115,21 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* CTA */}      {/* Prochains stages */}
+      <section className="py-20 bg-white">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900">Prochains stages</h2>
+            <p className="mt-4 text-lg text-gray-600">Consultez les prochaines dates disponibles</p>
+          </div>
+          <UpcomingSessions limit={5} />
+          <div className="text-center mt-8">
+            <a href="/stages" className="inline-block text-[#1E3A4C] font-semibold hover:text-[#D9A759] transition">
+              Voir tous les stages →
+            </a>
+          </div>
+        </div>
+      </section>
       <section className="bg-[#A8D0E6] py-16">
         <div className="mx-auto max-w-4xl px-4 text-center">
           <h2 className="text-3xl font-bold text-white">
