@@ -115,7 +115,7 @@ export default function HomePage() {
             Prêt à récupérer vos points ?
           </h2>
           <p className="mt-4 text-teal-100 text-lg">
-            Des places disponibles dans toute la France. Inscrivez-vous dès maintenant.
+            Des places disponibles au Pays Basque et dans les Landes. Inscrivez-vous dès maintenant.
           </p>
           <a
             href="/stages"
