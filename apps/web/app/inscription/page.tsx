@@ -187,7 +187,7 @@ function InscriptionForm() {
       if (paymentMethod === 'TRANSFER') {
         setTransferInfo(payment.bankTransfer || null);
       } else if (payment.redirectUrl || payment.paymentUrl) {
-        window.location.href = payment.redirectUrl || payment.paymentUrl;
+        window.location.href = payment.redirectUrl || payment.paymentUrl || '';
       } else {
         setError('URL de paiement introuvable');
       }
