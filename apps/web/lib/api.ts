@@ -146,17 +146,29 @@ export const registrationsApi = {
 
 // ========== Payments ==========
 export const paymentsApi = {
-  create: (registrationId: number, amount: number, token: string) =>
+  create: (registrationId: number, amount: number, token: string, method: 'CARD' | 'TRANSFER' = 'CARD') =>
     api<{
       paymentId: number;
       tracker: string;
       amount: number;
       currency: string;
-      paymentUrl: string;
-      redirectUrl: string;
+      method: string;
+      paymentUrl?: string;
+      redirectUrl?: string;
+      bankTransfer?: {
+        bankName: string;
+        iban: string;
+        bic: string;
+        holder: string;
+        reference: string;
+      };
     }>('/payments', {
       method: 'POST',
-      body: { registrationId, amount },
+      body: { registrationId, amount, method },
       token,
     }),
+  confirmTransfer: (paymentId: number, token: string) =>
+    api('/payments/' + paymentId + '/confirm-transfer', { method: 'POST', token }),
+  pendingTransfers: (token: string) =>
+    api('/payments/pending-transfers', { token }),
 };

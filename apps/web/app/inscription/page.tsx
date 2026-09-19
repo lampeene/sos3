@@ -31,6 +31,14 @@ function InscriptionForm() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [registrationId, setRegistrationId] = useState<number | null>(null);
+  const [paymentMethod, setPaymentMethod] = useState<'CARD' | 'TRANSFER'>('CARD');
+  const [transferInfo, setTransferInfo] = useState<{
+    bankName: string;
+    iban: string;
+    bic: string;
+    holder: string;
+    reference: string;
+  } | null>(null);
 
   // Form data
   const [form, setForm] = useState({
@@ -167,15 +175,18 @@ function InscriptionForm() {
 
       setRegistrationId(registration.id);
 
-      // 2. Create PayPlug payment
+      // 2. Create payment (SumUp card/Apple Pay/Google Pay, or bank transfer)
       const payment = await paymentsApi.create(
         registration.id,
         session.price,
         token,
+        paymentMethod,
       );
 
-      // 3. Redirect to PayPlug
-      if (payment.redirectUrl || payment.paymentUrl) {
+      // 3. Handle result depending on the chosen method
+      if (paymentMethod === 'TRANSFER') {
+        setTransferInfo(payment.bankTransfer || null);
+      } else if (payment.redirectUrl || payment.paymentUrl) {
         window.location.href = payment.redirectUrl || payment.paymentUrl;
       } else {
         setError('URL de paiement introuvable');
@@ -439,46 +450,83 @@ function InscriptionForm() {
           {/* STEP 4 – Payment */}
           {currentStep === 4 && (
             <div className="space-y-6 text-center">
-              <h2 className="text-xl font-semibold">Paiement sécurisé</h2>
-              <p className="text-gray-600">
-                Vous allez être redirigé vers PayPlug pour régler votre inscription
-                en toute sécurité (carte bancaire).
-              </p>
+              <h2 className="text-xl font-semibold">Paiement</h2>
 
-              <div className="rounded-lg bg-gray-50 p-6 max-w-sm mx-auto">
-                <p className="text-sm text-gray-500">Montant à régler</p>
-                <p className="text-4xl font-bold text-[#1E3A4C]">
-                  {session?.price ?? '—'} €
-                </p>
-                {session && (
-                  <p className="mt-2 text-sm text-gray-500">
-                    {session.place.name} –{' '}
-                    {new Date(session.date).toLocaleDateString('fr-FR')}
+              {transferInfo && (
+                <div className="space-y-4 text-left max-w-md mx-auto">
+                  <div className="rounded-lg bg-green-50 px-4 py-3 text-sm text-green-800 text-center">
+                    Votre inscription est enregistrée. Merci d'effectuer le virement ci-dessous ; elle sera validée dès réception.
+                  </div>
+                  <div className="rounded-lg bg-gray-50 p-6 space-y-2 text-sm">
+                    <p><span className="text-gray-500">Bénéficiaire :</span> <strong>{transferInfo.holder}</strong></p>
+                    <p><span className="text-gray-500">Banque :</span> {transferInfo.bankName}</p>
+                    <p><span className="text-gray-500">IBAN :</span> {transferInfo.iban}</p>
+                    <p><span className="text-gray-500">BIC :</span> {transferInfo.bic}</p>
+                    <p><span className="text-gray-500">Montant :</span> <strong>{session?.price} €</strong></p>
+                    <p><span className="text-gray-500">Référence à indiquer :</span> <strong>{transferInfo.reference}</strong></p>
+                  </div>
+                  <p className="text-xs text-gray-400 text-center">
+                    Merci d'indiquer cette référence dans le libellé de votre virement.
                   </p>
-                )}
-              </div>
-
-              {!isAuthenticated() && (
-                <div className="rounded-lg bg-amber-50 px-4 py-3 text-sm text-amber-800">
-                  Vous devez être connecté pour payer.{' '}
-                  <a href="/login" className="font-semibold underline">
-                    Se connecter
-                  </a>
                 </div>
               )}
 
-              <button
-                onClick={handlePay}
-                disabled={loading || !isAuthenticated()}
-                className="rounded-lg bg-[#D9A759] px-10 py-4 text-lg font-semibold text-[#1E3A4C] hover:bg-[#c2925a] transition disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {loading ? 'Redirection vers PayPlug...' : 'Payer avec PayPlug'}
-              </button>
+              {!transferInfo && (
+                <div className="max-w-sm mx-auto space-y-3 text-left">
+                  <label className={`flex cursor-pointer items-center gap-3 rounded-lg border p-4 transition ${paymentMethod === 'CARD' ? 'border-[#1E3A4C] bg-sky-50' : 'border-gray-200 hover:border-gray-300'}`}>
+                    <input type="radio" name="paymentMethod" checked={paymentMethod === 'CARD'} onChange={() => setPaymentMethod('CARD')} className="h-4 w-4 text-[#1E3A4C]" />
+                    <span className="font-medium">Carte bancaire / Apple Pay / Google Pay</span>
+                  </label>
+                  <label className={`flex cursor-pointer items-center gap-3 rounded-lg border p-4 transition ${paymentMethod === 'TRANSFER' ? 'border-[#1E3A4C] bg-sky-50' : 'border-gray-200 hover:border-gray-300'}`}>
+                    <input type="radio" name="paymentMethod" checked={paymentMethod === 'TRANSFER'} onChange={() => setPaymentMethod('TRANSFER')} className="h-4 w-4 text-[#1E3A4C]" />
+                    <span className="font-medium">Virement bancaire</span>
+                  </label>
+                </div>
+              )}
 
-              <p className="text-xs text-gray-400">
-                Paiement sécurisé par PayPlug – Vos données bancaires ne transitent
-                pas par notre serveur.
-              </p>
+              {!transferInfo && (
+                <>
+                  <div className="rounded-lg bg-gray-50 p-6 max-w-sm mx-auto">
+                    <p className="text-sm text-gray-500">Montant à régler</p>
+                    <p className="text-4xl font-bold text-[#1E3A4C]">
+                      {session?.price ?? '—'} €
+                    </p>
+                    {session && (
+                      <p className="mt-2 text-sm text-gray-500">
+                        {session.place.name} –{' '}
+                        {new Date(session.date).toLocaleDateString('fr-FR')}
+                      </p>
+                    )}
+                  </div>
+
+                  {!isAuthenticated() && (
+                    <div className="rounded-lg bg-amber-50 px-4 py-3 text-sm text-amber-800">
+                      Vous devez être connecté pour payer.{' '}
+                      <a href="/login" className="font-semibold underline">
+                        Se connecter
+                      </a>
+                    </div>
+                  )}
+
+                  <button
+                    onClick={handlePay}
+                    disabled={loading || !isAuthenticated()}
+                    className="rounded-lg bg-[#D9A759] px-10 py-4 text-lg font-semibold text-[#1E3A4C] hover:bg-[#c2925a] transition disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {loading
+                      ? 'Traitement...'
+                      : paymentMethod === 'TRANSFER'
+                      ? 'Confirmer mon inscription'
+                      : 'Payer en ligne'}
+                  </button>
+
+                  <p className="text-xs text-gray-400">
+                    {paymentMethod === 'TRANSFER'
+                      ? 'Vous recevrez les coordonnées bancaires après validation.'
+                      : 'Paiement sécurisé par SumUp – Vos données bancaires ne transitent pas par notre serveur.'}
+                  </p>
+                </>
+              )}
             </div>
           )}
 

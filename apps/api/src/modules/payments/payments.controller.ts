@@ -23,22 +23,40 @@ export class PaymentsController {
   @Post()
   @UseGuards(JwtAuthGuard)
   create(@Body() dto: CreatePaymentDto) {
-    return this.paymentsService.createPayment(dto.registrationId, dto.amount);
+    return this.paymentsService.createPayment(
+      dto.registrationId,
+      dto.amount,
+      dto.method || 'CARD',
+    );
   }
 
   /**
-   * PayPlug IPN – called by PayPlug servers (no auth).
-   */
-  @Post('ipn')
+  * SumUp webhook – called by SumUp servers (no auth).
+  * Payload: { event_type: 'CHECKOUT_STATUS_CHANGED', id: '<checkout id>' }
+  * We always re-verify the status server-side via GET /checkouts/{id}.
+  */
+  @Post('webhook')
   @HttpCode(200)
-  async ipn(@Query('tracker') tracker: string) {
-    this.logger.log(`IPN received for tracker=${tracker}`);
+  async webhook(@Query('tracker') tracker: string) {
+    this.logger.log(`Webhook received for tracker=${tracker}`);
     try {
-      await this.paymentsService.handleIpn(tracker);
+      await this.paymentsService.handleWebhook(tracker);
     } catch (err) {
-      this.logger.error(`IPN error for ${tracker}`, err);
+      this.logger.error(`Webhook error for ${tracker}`, err);
     }
     return 'OK';
+  }
+
+  @Get('pending-transfers')
+  @UseGuards(JwtAuthGuard)
+  findPendingTransfers() {
+    return this.paymentsService.findPendingTransfers();
+  }
+
+  @Post(':id/confirm-transfer')
+  @UseGuards(JwtAuthGuard)
+  confirmTransfer(@Param('id', ParseIntPipe) id: number) {
+    return this.paymentsService.confirmTransfer(id);
   }
 
   @Get('registration/:id')

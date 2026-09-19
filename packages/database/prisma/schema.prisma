@@ -19,8 +19,14 @@ enum Gender {
 
 enum PaymentStatus {
   CREATED
+  PENDING_TRANSFER
   SUCCESS
   FAILURE
+}
+
+enum PaymentMethod {
+  CARD
+  TRANSFER
 }
 
 enum CaseNumber {
@@ -225,6 +231,7 @@ model Payment {
   id                Int           @id @default(autoincrement())
   amount            Int           // in cents
   status            PaymentStatus @default(CREATED)
+  method            PaymentMethod @default(CARD)
   tracker           String?       @unique @db.Uuid
   payId             String?
   payUrl            String?
