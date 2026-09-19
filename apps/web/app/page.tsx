@@ -32,7 +32,8 @@ export default function HomePage() {
       {/* Hero */}
       <section className="relative bg-gradient-to-br from-[#1E3A4C] to-[#153044] text-white">
         <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
-          <div className="max-w-2xl">
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+            <div>
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
               Récupérez vos points
               <span className="block text-[#D9A759]">en toute confiance</span>
@@ -54,6 +55,10 @@ export default function HomePage() {
               >
                 Comment ça marche ?
               </a>
+            </div>
+          </div>
+            <div className="mt-10 lg:mt-0">
+              <img src="/images/hero-photo.jpeg" alt="Conducteur souriant, ceinture attachée, pouce levé" className="rounded-2xl shadow-xl w-full h-auto object-cover" />
             </div>
           </div>
         </div>
