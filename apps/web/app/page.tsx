@@ -2,27 +2,27 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Header / Navbar */}
-      <header className="bg-[#08717e] text-white">
+      <header className="bg-[#A8D0E6] text-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center gap-3">
               <span className="text-2xl font-bold tracking-tight">
-                SOS <span className="text-[#f9be00]">Permis à points</span>
+                SOS <span className="text-[#D9A759]">Permis à points</span>
               </span>
             </div>
             <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
-              <a href="/" className="hover:text-[#f9be00] transition">
+              <a href="/" className="hover:text-[#D9A759] transition">
                 Accueil
               </a>
-              <a href="/stages" className="hover:text-[#f9be00] transition">
+              <a href="/stages" className="hover:text-[#D9A759] transition">
                 Stages
               </a>
-              <a href="/about" className="hover:text-[#f9be00] transition">
+              <a href="/about" className="hover:text-[#D9A759] transition">
                 À propos
               </a>
               <a
                 href="/login"
-                className="rounded-md bg-[#f9be00] px-4 py-2 text-[#08717e] font-semibold hover:bg-yellow-400 transition"
+                className="rounded-md bg-[#D9A759] px-4 py-2 text-[#1E3A4C] font-semibold hover:bg-[#c2925a] transition"
               >
                 Connexion
               </a>
@@ -32,21 +32,21 @@ export default function HomePage() {
       </header>
 
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-[#08717e] to-[#065a64] text-white">
+      <section className="relative bg-gradient-to-br from-[#1E3A4C] to-[#153044] text-white">
         <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
               Récupérez vos points
-              <span className="block text-[#f9be00]">en toute confiance</span>
+              <span className="block text-[#D9A759]">en toute confiance</span>
             </h1>
-            <p className="mt-6 text-lg leading-8 text-teal-100">
+            <p className="mt-6 text-lg leading-8 text-sky-100">
               Stages de récupération de points agréés par les préfectures.
               Des centres partout en France, des formateurs expérimentés.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <a
                 href="/stages"
-                className="rounded-lg bg-[#f9be00] px-6 py-3 text-base font-semibold text-[#08717e] shadow-lg hover:bg-yellow-400 transition"
+                className="rounded-lg bg-[#D9A759] px-6 py-3 text-base font-semibold text-[#1E3A4C] shadow-lg hover:bg-[#c2925a] transition"
               >
                 Trouver un stage
               </a>
@@ -95,7 +95,7 @@ export default function HomePage() {
                 key={item.step}
                 className="relative rounded-2xl bg-white p-8 shadow-sm border border-gray-100"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#f9be00] text-xl font-bold text-[#08717e]">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#D9A759] text-xl font-bold text-[#1E3A4C]">
                   {item.step}
                 </div>
                 <h3 className="mt-6 text-xl font-semibold text-gray-900">
@@ -109,17 +109,17 @@ export default function HomePage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[#08717e] py-16">
+      <section className="bg-[#A8D0E6] py-16">
         <div className="mx-auto max-w-4xl px-4 text-center">
           <h2 className="text-3xl font-bold text-white">
             Prêt à récupérer vos points ?
           </h2>
-          <p className="mt-4 text-teal-100 text-lg">
+          <p className="mt-4 text-sky-100 text-lg">
             Des places disponibles au Pays Basque et dans les Landes. Inscrivez-vous dès maintenant.
           </p>
           <a
             href="/stages"
-            className="mt-8 inline-block rounded-lg bg-[#f9be00] px-8 py-4 text-lg font-semibold text-[#08717e] hover:bg-yellow-400 transition shadow-lg"
+            className="mt-8 inline-block rounded-lg bg-[#D9A759] px-8 py-4 text-lg font-semibold text-[#1E3A4C] hover:bg-[#c2925a] transition shadow-lg"
           >
             Voir les prochains stages
           </a>
@@ -148,17 +148,17 @@ export default function HomePage() {
               <h4 className="font-semibold">Liens utiles</h4>
               <ul className="mt-3 space-y-2 text-sm text-gray-300">
                 <li>
-                  <a href="/stages" className="hover:text-[#f9be00]">
+                  <a href="/stages" className="hover:text-[#D9A759]">
                     Stages
                   </a>
                 </li>
                 <li>
-                  <a href="/about" className="hover:text-[#f9be00]">
+                  <a href="/about" className="hover:text-[#D9A759]">
                     À propos
                   </a>
                 </li>
                 <li>
-                  <a href="/login" className="hover:text-[#f9be00]">
+                  <a href="/login" className="hover:text-[#D9A759]">
                     Espace client
                   </a>
                 </li>

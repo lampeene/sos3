@@ -74,12 +74,12 @@ export default function StagesPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="bg-[#08717e] text-white">
+      <header className="bg-[#A8D0E6] text-white">
         <div className="mx-auto max-w-7xl px-4 py-4 flex items-center justify-between">
           <a href="/" className="text-xl font-bold">
-            SOS <span className="text-[#f9be00]">Permis à points</span>
+            SOS <span className="text-[#D9A759]">Permis à points</span>
           </a>
-          <a href="/" className="text-sm hover:text-[#f9be00]">
+          <a href="/" className="text-sm hover:text-[#D9A759]">
             ← Accueil
           </a>
         </div>
@@ -99,7 +99,7 @@ export default function StagesPage() {
             placeholder="Ville, code postal, nom du centre..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full max-w-md rounded-lg border border-gray-300 px-4 py-3 focus:border-[#08717e] focus:outline-none focus:ring-2 focus:ring-[#08717e]/20"
+            className="w-full max-w-md rounded-lg border border-gray-300 px-4 py-3 focus:border-[#1E3A4C] focus:outline-none focus:ring-2 focus:ring-[#1E3A4C]/20"
           />
         </div>
 
@@ -122,7 +122,7 @@ export default function StagesPage() {
               >
                 <div>
                   <div className="flex items-center gap-3 mb-1">
-                    <span className="inline-block rounded-md bg-[#08717e] px-3 py-1 text-sm font-semibold text-white">
+                    <span className="inline-block rounded-md bg-[#A8D0E6] px-3 py-1 text-sm font-semibold text-white">
                       {new Date(session.date).toLocaleDateString('fr-FR', {
                         weekday: 'short',
                         day: 'numeric',
@@ -130,7 +130,7 @@ export default function StagesPage() {
                         year: 'numeric',
                       })}
                     </span>
-                    <span className="text-lg font-bold text-[#08717e]">
+                    <span className="text-lg font-bold text-[#1E3A4C]">
                       {session.price} €
                     </span>
                   </div>
@@ -152,7 +152,7 @@ export default function StagesPage() {
                   href={`/inscription?sessionId=${session.id}`}
                   className={`rounded-lg px-6 py-3 text-center font-semibold transition ${
                     session.freePlaces > 0
-                      ? 'bg-[#f9be00] text-[#08717e] hover:bg-yellow-400'
+                      ? 'bg-[#D9A759] text-[#1E3A4C] hover:bg-[#c2925a]'
                       : 'bg-gray-200 text-gray-500 cursor-not-allowed pointer-events-none'
                   }`}
                 >

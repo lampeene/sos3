@@ -125,7 +125,7 @@ function EditSessionContent() {
                 required
                 value={form.date}
                 onChange={(e) => update('date', e.target.value)}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
             <div>
@@ -136,7 +136,7 @@ function EditSessionContent() {
                 min={1}
                 value={form.price}
                 onChange={(e) => update('price', Number(e.target.value))}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
             <div>
@@ -148,7 +148,7 @@ function EditSessionContent() {
                 max={30}
                 value={form.maxRegistration}
                 onChange={(e) => update('maxRegistration', Number(e.target.value))}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
             <div>
@@ -159,7 +159,7 @@ function EditSessionContent() {
                 max={30}
                 value={form.minRegistration}
                 onChange={(e) => update('minRegistration', Number(e.target.value))}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
             <div className="sm:col-span-2">
@@ -168,7 +168,7 @@ function EditSessionContent() {
                 required
                 value={form.placeId}
                 onChange={(e) => update('placeId', Number(e.target.value))}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               >
                 <option value={0}>— Sélectionner —</option>
                 {places.map((p) => (
@@ -183,7 +183,7 @@ function EditSessionContent() {
               <select
                 value={form.psyId}
                 onChange={(e) => update('psyId', Number(e.target.value))}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               >
                 <option value={0}>— Optionnel —</option>
                 {psys.map((u) => (
@@ -198,7 +198,7 @@ function EditSessionContent() {
               <select
                 value={form.trainerId}
                 onChange={(e) => update('trainerId', Number(e.target.value))}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               >
                 <option value={0}>— Optionnel —</option>
                 {trainers.map((u) => (
@@ -215,7 +215,7 @@ function EditSessionContent() {
           <button
             type="submit"
             disabled={loading}
-            className="rounded-lg bg-[#08717e] px-6 py-3 font-semibold text-white hover:bg-teal-800 disabled:opacity-50"
+            className="rounded-lg bg-[#A8D0E6] px-6 py-3 font-semibold text-white hover:bg-sky-900 disabled:opacity-50"
           >
             {loading ? 'Enregistrement...' : 'Enregistrer'}
           </button>

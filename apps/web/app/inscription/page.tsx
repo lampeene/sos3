@@ -192,7 +192,7 @@ function InscriptionForm() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <p className="text-gray-600">Aucun stage sélectionné.</p>
-          <a href="/stages" className="mt-4 inline-block text-[#08717e] font-semibold">
+          <a href="/stages" className="mt-4 inline-block text-[#1E3A4C] font-semibold">
             Voir les stages →
           </a>
         </div>
@@ -202,14 +202,14 @@ function InscriptionForm() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="bg-[#08717e] text-white">
+      <header className="bg-[#A8D0E6] text-white">
         <div className="mx-auto max-w-4xl px-4 py-4">
-          <a href="/stages" className="text-sm hover:text-[#f9be00]">
+          <a href="/stages" className="text-sm hover:text-[#D9A759]">
             ← Retour aux stages
           </a>
           <h1 className="mt-2 text-2xl font-bold">Inscription au stage</h1>
           {session && (
-            <p className="mt-1 text-teal-100 text-sm">
+            <p className="mt-1 text-sky-100 text-sm">
               {session.place.name} –{' '}
               {new Date(session.date).toLocaleDateString('fr-FR')} –{' '}
               <strong>{session.price} €</strong>
@@ -227,7 +227,7 @@ function InscriptionForm() {
                 <div
                   className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold ${
                     currentStep >= step.id
-                      ? 'bg-[#08717e] text-white'
+                      ? 'bg-[#A8D0E6] text-white'
                       : 'bg-gray-200 text-gray-500'
                   }`}
                 >
@@ -235,7 +235,7 @@ function InscriptionForm() {
                 </div>
                 <span
                   className={`ml-2 hidden text-sm font-medium sm:block ${
-                    currentStep >= step.id ? 'text-[#08717e]' : 'text-gray-400'
+                    currentStep >= step.id ? 'text-[#1E3A4C]' : 'text-gray-400'
                   }`}
                 >
                   {step.title}
@@ -243,7 +243,7 @@ function InscriptionForm() {
                 {index < STEPS.length - 1 && (
                   <div
                     className={`mx-4 h-1 flex-1 rounded ${
-                      currentStep > step.id ? 'bg-[#08717e]' : 'bg-gray-200'
+                      currentStep > step.id ? 'bg-[#A8D0E6]' : 'bg-gray-200'
                     }`}
                   />
                 )}
@@ -269,33 +269,33 @@ function InscriptionForm() {
                   placeholder="Prénom *"
                   value={form.firstName}
                   onChange={(e) => update('firstName', e.target.value)}
-                  className="rounded-lg border px-4 py-3 focus:border-[#08717e] focus:outline-none"
+                  className="rounded-lg border px-4 py-3 focus:border-[#1E3A4C] focus:outline-none"
                 />
                 <input
                   type="text"
                   placeholder="Nom *"
                   value={form.lastName}
                   onChange={(e) => update('lastName', e.target.value)}
-                  className="rounded-lg border px-4 py-3 focus:border-[#08717e] focus:outline-none"
+                  className="rounded-lg border px-4 py-3 focus:border-[#1E3A4C] focus:outline-none"
                 />
                 <input
                   type="email"
                   placeholder="Email *"
                   value={form.email}
                   onChange={(e) => update('email', e.target.value)}
-                  className="rounded-lg border px-4 py-3 focus:border-[#08717e] focus:outline-none sm:col-span-2"
+                  className="rounded-lg border px-4 py-3 focus:border-[#1E3A4C] focus:outline-none sm:col-span-2"
                 />
                 <input
                   type="password"
                   placeholder="Mot de passe * (min. 6 caractères)"
                   value={form.password}
                   onChange={(e) => update('password', e.target.value)}
-                  className="rounded-lg border px-4 py-3 focus:border-[#08717e] focus:outline-none sm:col-span-2"
+                  className="rounded-lg border px-4 py-3 focus:border-[#1E3A4C] focus:outline-none sm:col-span-2"
                 />
               </div>
               <p className="text-sm text-gray-500">
                 Déjà un compte ?{' '}
-                <a href="/login" className="text-[#08717e] font-medium">
+                <a href="/login" className="text-[#1E3A4C] font-medium">
                   Connectez-vous
                 </a>
               </p>
@@ -312,14 +312,14 @@ function InscriptionForm() {
                   placeholder="Numéro de permis *"
                   value={form.drivingLicenseNumber}
                   onChange={(e) => update('drivingLicenseNumber', e.target.value)}
-                  className="rounded-lg border px-4 py-3 focus:border-[#08717e] focus:outline-none"
+                  className="rounded-lg border px-4 py-3 focus:border-[#1E3A4C] focus:outline-none"
                 />
                 <input
                   type="text"
                   placeholder="Lieu de délivrance *"
                   value={form.placeOfIssue}
                   onChange={(e) => update('placeOfIssue', e.target.value)}
-                  className="rounded-lg border px-4 py-3 focus:border-[#08717e] focus:outline-none"
+                  className="rounded-lg border px-4 py-3 focus:border-[#1E3A4C] focus:outline-none"
                 />
                 <div className="sm:col-span-2">
                   <label className="block text-sm text-gray-600 mb-1">
@@ -329,7 +329,7 @@ function InscriptionForm() {
                     type="date"
                     value={form.dateOfIssue}
                     onChange={(e) => update('dateOfIssue', e.target.value)}
-                    className="w-full rounded-lg border px-4 py-3 focus:border-[#08717e] focus:outline-none"
+                    className="w-full rounded-lg border px-4 py-3 focus:border-[#1E3A4C] focus:outline-none"
                   />
                 </div>
                 <div className="sm:col-span-2">
@@ -369,7 +369,7 @@ function InscriptionForm() {
                     key={c.value}
                     className={`flex cursor-pointer items-center gap-3 rounded-lg border p-4 transition ${
                       form.caseNumber === c.value
-                        ? 'border-[#08717e] bg-teal-50'
+                        ? 'border-[#1E3A4C] bg-sky-50'
                         : 'border-gray-200 hover:border-gray-300'
                     }`}
                   >
@@ -379,7 +379,7 @@ function InscriptionForm() {
                       value={c.value}
                       checked={form.caseNumber === c.value}
                       onChange={(e) => update('caseNumber', e.target.value)}
-                      className="h-4 w-4 text-[#08717e]"
+                      className="h-4 w-4 text-[#1E3A4C]"
                     />
                     <span className="font-medium">{c.label}</span>
                   </label>
@@ -387,7 +387,7 @@ function InscriptionForm() {
               </div>
 
               {form.caseNumber && DOCUMENT_REQUIREMENTS[form.caseNumber as keyof typeof DOCUMENT_REQUIREMENTS] && (
-                <p className="text-sm text-[#08717e] bg-teal-50 rounded-lg px-4 py-2">
+                <p className="text-sm text-[#1E3A4C] bg-sky-50 rounded-lg px-4 py-2">
                   {DOCUMENT_REQUIREMENTS[form.caseNumber as keyof typeof DOCUMENT_REQUIREMENTS].description}
                 </p>
               )}
@@ -447,7 +447,7 @@ function InscriptionForm() {
 
               <div className="rounded-lg bg-gray-50 p-6 max-w-sm mx-auto">
                 <p className="text-sm text-gray-500">Montant à régler</p>
-                <p className="text-4xl font-bold text-[#08717e]">
+                <p className="text-4xl font-bold text-[#1E3A4C]">
                   {session?.price ?? '—'} €
                 </p>
                 {session && (
@@ -470,7 +470,7 @@ function InscriptionForm() {
               <button
                 onClick={handlePay}
                 disabled={loading || !isAuthenticated()}
-                className="rounded-lg bg-[#f9be00] px-10 py-4 text-lg font-semibold text-[#08717e] hover:bg-yellow-400 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                className="rounded-lg bg-[#D9A759] px-10 py-4 text-lg font-semibold text-[#1E3A4C] hover:bg-[#c2925a] transition disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? 'Redirection vers PayPlug...' : 'Payer avec PayPlug'}
               </button>
@@ -495,7 +495,7 @@ function InscriptionForm() {
               <button
                 onClick={() => setCurrentStep((s) => Math.min(4, s + 1))}
                 disabled={!canGoNext() || loading}
-                className="rounded-lg bg-[#08717e] px-6 py-2 font-medium text-white hover:bg-teal-800 disabled:opacity-40"
+                className="rounded-lg bg-[#A8D0E6] px-6 py-2 font-medium text-white hover:bg-sky-900 disabled:opacity-40"
               >
                 Suivant
               </button>

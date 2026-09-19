@@ -11,7 +11,7 @@ export default function PaymentCancelPage() {
         <div className="mt-8 flex flex-col gap-3">
           <a
             href="/stages"
-            className="rounded-lg bg-[#f9be00] px-6 py-3 font-semibold text-[#08717e] hover:bg-yellow-400"
+            className="rounded-lg bg-[#D9A759] px-6 py-3 font-semibold text-[#1E3A4C] hover:bg-[#c2925a]"
           >
             Retour aux stages
           </a>

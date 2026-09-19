@@ -34,11 +34,11 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#08717e] to-[#065a64] px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#1E3A4C] to-[#153044] px-4">
       <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-xl">
         <div className="text-center mb-8">
           <h1 className="text-2xl font-bold text-gray-900">
-            SOS <span className="text-[#08717e]">Permis à points</span>
+            SOS <span className="text-[#1E3A4C]">Permis à points</span>
           </h1>
           <p className="mt-2 text-gray-600">Connexion à votre espace</p>
         </div>
@@ -59,7 +59,7 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-[#08717e] focus:outline-none focus:ring-2 focus:ring-[#08717e]/20"
+              className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-[#1E3A4C] focus:outline-none focus:ring-2 focus:ring-[#1E3A4C]/20"
             />
           </div>
 
@@ -72,21 +72,21 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-[#08717e] focus:outline-none focus:ring-2 focus:ring-[#08717e]/20"
+              className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-[#1E3A4C] focus:outline-none focus:ring-2 focus:ring-[#1E3A4C]/20"
             />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-lg bg-[#08717e] py-3 font-semibold text-white hover:bg-teal-800 transition disabled:opacity-60"
+            className="w-full rounded-lg bg-[#A8D0E6] py-3 font-semibold text-white hover:bg-sky-900 transition disabled:opacity-60"
           >
             {loading ? 'Connexion...' : 'Se connecter'}
           </button>
         </form>
 
         <p className="mt-6 text-center text-sm text-gray-500">
-          <a href="/" className="hover:text-[#08717e]">
+          <a href="/" className="hover:text-[#1E3A4C]">
             ← Retour à l’accueil
           </a>
         </p>

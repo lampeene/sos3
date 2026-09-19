@@ -67,13 +67,13 @@ function UsersContent() {
           placeholder="Rechercher (nom, email, ville...)"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="rounded-lg border px-4 py-2 w-full max-w-sm focus:border-[#08717e] focus:outline-none"
+          className="rounded-lg border px-4 py-2 w-full max-w-sm focus:border-[#1E3A4C] focus:outline-none"
         />
         <div className="flex items-center gap-4">
           <span className="text-sm text-gray-500">{total} utilisateur(s)</span>
           <a
             href="/admin/users/new"
-            className="rounded-lg bg-[#08717e] px-4 py-2 text-sm font-semibold text-white hover:bg-teal-800"
+            className="rounded-lg bg-[#A8D0E6] px-4 py-2 text-sm font-semibold text-white hover:bg-sky-900"
           >
             + Nouvel utilisateur
           </a>
@@ -120,7 +120,7 @@ function UsersContent() {
                   <td className="px-4 py-3 text-gray-600">{u.email}</td>
                   <td className="px-4 py-3 text-gray-600">{u.city || '—'}</td>
                   <td className="px-4 py-3">
-                    <span className="rounded-full bg-teal-50 px-2 py-0.5 text-xs font-medium text-[#08717e]">
+                    <span className="rounded-full bg-sky-50 px-2 py-0.5 text-xs font-medium text-[#1E3A4C]">
                       {u.role?.name || '—'}
                     </span>
                   </td>
@@ -134,7 +134,7 @@ function UsersContent() {
                   <td className="px-4 py-3 space-x-3">
                     <a
                       href={`/admin/users/${u.id}/edit`}
-                      className="text-[#08717e] hover:underline text-xs font-medium"
+                      className="text-[#1E3A4C] hover:underline text-xs font-medium"
                     >
                       Modifier
                     </a>

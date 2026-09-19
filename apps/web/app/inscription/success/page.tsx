@@ -67,7 +67,7 @@ function PaymentSuccessContent() {
             )}
             <a
               href="/"
-              className="mt-8 inline-block rounded-lg bg-[#08717e] px-6 py-3 font-semibold text-white hover:bg-teal-800"
+              className="mt-8 inline-block rounded-lg bg-[#A8D0E6] px-6 py-3 font-semibold text-white hover:bg-sky-900"
             >
               Retour à l’accueil
             </a>
@@ -101,7 +101,7 @@ function PaymentSuccessContent() {
             </p>
             <a
               href="/stages"
-              className="mt-8 inline-block rounded-lg bg-[#f9be00] px-6 py-3 font-semibold text-[#08717e] hover:bg-yellow-400"
+              className="mt-8 inline-block rounded-lg bg-[#D9A759] px-6 py-3 font-semibold text-[#1E3A4C] hover:bg-[#c2925a]"
             >
               Réessayer
             </a>

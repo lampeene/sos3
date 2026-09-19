@@ -151,7 +151,7 @@ export default function FileUpload({
       </p>
 
       <div className="flex items-center gap-3">
-        <label className="cursor-pointer rounded-lg border border-dashed border-gray-300 px-4 py-3 text-sm text-gray-600 hover:border-[#08717e] hover:bg-teal-50 transition">
+        <label className="cursor-pointer rounded-lg border border-dashed border-gray-300 px-4 py-3 text-sm text-gray-600 hover:border-[#1E3A4C] hover:bg-sky-50 transition">
           <input
             ref={inputRef}
             type="file"
@@ -177,7 +177,7 @@ export default function FileUpload({
       {uploading && (
         <div className="h-2 w-full rounded-full bg-gray-200 overflow-hidden">
           <div
-            className="h-full bg-[#08717e] transition-all duration-200"
+            className="h-full bg-[#A8D0E6] transition-all duration-200"
             style={{ width: `${progress}%` }}
           />
         </div>

@@ -69,7 +69,7 @@ function NewPlaceContent() {
                 value={form.name}
                 onChange={(e) => update('name', e.target.value)}
                 placeholder="Centre Bordeaux – Chartrons"
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
             <div className="sm:col-span-2">
@@ -80,7 +80,7 @@ function NewPlaceContent() {
                 required
                 value={form.address1}
                 onChange={(e) => update('address1', e.target.value)}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
             <div className="sm:col-span-2">
@@ -90,7 +90,7 @@ function NewPlaceContent() {
               <input
                 value={form.address2}
                 onChange={(e) => update('address2', e.target.value)}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
             <div>
@@ -101,7 +101,7 @@ function NewPlaceContent() {
                 required
                 value={form.zipcode}
                 onChange={(e) => update('zipcode', e.target.value)}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
             <div>
@@ -112,7 +112,7 @@ function NewPlaceContent() {
                 required
                 value={form.city}
                 onChange={(e) => update('city', e.target.value)}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
             <div className="sm:col-span-2">
@@ -124,7 +124,7 @@ function NewPlaceContent() {
                 value={form.region}
                 onChange={(e) => update('region', e.target.value)}
                 placeholder="Nouvelle-Aquitaine"
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
             <div className="sm:col-span-2">
@@ -135,7 +135,7 @@ function NewPlaceContent() {
                 value={form.description}
                 onChange={(e) => update('description', e.target.value)}
                 rows={3}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
           </div>
@@ -152,7 +152,7 @@ function NewPlaceContent() {
                 required
                 value={form.certifLastName}
                 onChange={(e) => update('certifLastName', e.target.value)}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
             <div>
@@ -163,7 +163,7 @@ function NewPlaceContent() {
                 required
                 value={form.certifFirstName}
                 onChange={(e) => update('certifFirstName', e.target.value)}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
             <div className="sm:col-span-2">
@@ -175,7 +175,7 @@ function NewPlaceContent() {
                 value={form.certifNumber}
                 onChange={(e) => update('certifNumber', e.target.value)}
                 placeholder="AG-33-2024-001"
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
           </div>
@@ -185,7 +185,7 @@ function NewPlaceContent() {
           <button
             type="submit"
             disabled={loading}
-            className="rounded-lg bg-[#08717e] px-6 py-3 font-semibold text-white hover:bg-teal-800 disabled:opacity-50"
+            className="rounded-lg bg-[#A8D0E6] px-6 py-3 font-semibold text-white hover:bg-sky-900 disabled:opacity-50"
           >
             {loading ? 'Création...' : 'Créer le lieu'}
           </button>

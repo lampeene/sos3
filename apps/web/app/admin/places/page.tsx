@@ -66,13 +66,13 @@ function PlacesContent() {
           placeholder="Rechercher (nom, ville, CP...)"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="rounded-lg border px-4 py-2 w-full max-w-sm focus:border-[#08717e] focus:outline-none"
+          className="rounded-lg border px-4 py-2 w-full max-w-sm focus:border-[#1E3A4C] focus:outline-none"
         />
         <div className="flex items-center gap-4">
           <span className="text-sm text-gray-500">{total} lieu(x)</span>
           <a
             href="/admin/places/new"
-            className="rounded-lg bg-[#08717e] px-4 py-2 text-sm font-semibold text-white hover:bg-teal-800"
+            className="rounded-lg bg-[#A8D0E6] px-4 py-2 text-sm font-semibold text-white hover:bg-sky-900"
           >
             + Nouveau lieu
           </a>
@@ -110,7 +110,7 @@ function PlacesContent() {
                 <div className="space-x-3">
                   <a
                     href={`/admin/places/${p.id}/edit`}
-                    className="text-[#08717e] hover:underline text-xs font-medium"
+                    className="text-[#1E3A4C] hover:underline text-xs font-medium"
                   >
                     Modifier
                   </a>

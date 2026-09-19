@@ -81,7 +81,7 @@ function NewUserContent() {
                 required
                 value={form.firstName}
                 onChange={(e) => update('firstName', e.target.value)}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
             <div>
@@ -92,7 +92,7 @@ function NewUserContent() {
                 required
                 value={form.lastName}
                 onChange={(e) => update('lastName', e.target.value)}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
             <div>
@@ -104,7 +104,7 @@ function NewUserContent() {
                 required
                 value={form.email}
                 onChange={(e) => update('email', e.target.value)}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
             <div>
@@ -117,7 +117,7 @@ function NewUserContent() {
                 minLength={6}
                 value={form.password}
                 onChange={(e) => update('password', e.target.value)}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
             <div>
@@ -127,7 +127,7 @@ function NewUserContent() {
               <select
                 value={form.gender}
                 onChange={(e) => update('gender', e.target.value)}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               >
                 <option value="">—</option>
                 <option value="MALE">Homme</option>
@@ -142,7 +142,7 @@ function NewUserContent() {
                 required
                 value={form.roleId}
                 onChange={(e) => update('roleId', Number(e.target.value))}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               >
                 <option value={1}>Admin</option>
                 <option value={2}>User</option>
@@ -163,7 +163,7 @@ function NewUserContent() {
               <input
                 value={form.phone}
                 onChange={(e) => update('phone', e.target.value)}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
             <div>
@@ -173,7 +173,7 @@ function NewUserContent() {
               <input
                 value={form.mobile}
                 onChange={(e) => update('mobile', e.target.value)}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
             <div>
@@ -183,7 +183,7 @@ function NewUserContent() {
               <input
                 value={form.city}
                 onChange={(e) => update('city', e.target.value)}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
             <div>
@@ -193,7 +193,7 @@ function NewUserContent() {
               <input
                 value={form.zipCode}
                 onChange={(e) => update('zipCode', e.target.value)}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
           </div>
@@ -203,7 +203,7 @@ function NewUserContent() {
           <button
             type="submit"
             disabled={loading}
-            className="rounded-lg bg-[#08717e] px-6 py-3 font-semibold text-white hover:bg-teal-800 disabled:opacity-50"
+            className="rounded-lg bg-[#A8D0E6] px-6 py-3 font-semibold text-white hover:bg-sky-900 disabled:opacity-50"
           >
             {loading ? 'Création...' : 'Créer l’utilisateur'}
           </button>

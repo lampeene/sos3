@@ -27,22 +27,22 @@ export default function AdminLayout({
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <header className="bg-[#08717e] text-white">
+      <header className="bg-[#A8D0E6] text-white">
         <div className="mx-auto max-w-7xl px-4 py-4 flex items-center justify-between">
           <span className="text-xl font-bold">
-            SOS <span className="text-[#f9be00]">Admin</span>
+            SOS <span className="text-[#D9A759]">Admin</span>
           </span>
           <nav className="flex items-center gap-5 text-sm">
             {NAV.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="hover:text-[#f9be00] transition"
+                className="hover:text-[#D9A759] transition"
               >
                 {item.label}
               </a>
             ))}
-            <a href="/" className="hover:text-[#f9be00]">
+            <a href="/" className="hover:text-[#D9A759]">
               ← Site
             </a>
             <button

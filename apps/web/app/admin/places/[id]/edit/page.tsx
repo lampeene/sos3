@@ -103,7 +103,7 @@ function EditPlaceContent() {
                 required
                 value={form.name}
                 onChange={(e) => update('name', e.target.value)}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
             <div className="sm:col-span-2">
@@ -112,7 +112,7 @@ function EditPlaceContent() {
                 required
                 value={form.address1}
                 onChange={(e) => update('address1', e.target.value)}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
             <div className="sm:col-span-2">
@@ -120,7 +120,7 @@ function EditPlaceContent() {
               <input
                 value={form.address2}
                 onChange={(e) => update('address2', e.target.value)}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
             <div>
@@ -129,7 +129,7 @@ function EditPlaceContent() {
                 required
                 value={form.zipcode}
                 onChange={(e) => update('zipcode', e.target.value)}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
             <div>
@@ -138,7 +138,7 @@ function EditPlaceContent() {
                 required
                 value={form.city}
                 onChange={(e) => update('city', e.target.value)}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
             <div className="sm:col-span-2">
@@ -147,7 +147,7 @@ function EditPlaceContent() {
                 required
                 value={form.region}
                 onChange={(e) => update('region', e.target.value)}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
             <div className="sm:col-span-2">
@@ -156,7 +156,7 @@ function EditPlaceContent() {
                 value={form.description}
                 onChange={(e) => update('description', e.target.value)}
                 rows={3}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
           </div>
@@ -171,7 +171,7 @@ function EditPlaceContent() {
                 required
                 value={form.certifLastName}
                 onChange={(e) => update('certifLastName', e.target.value)}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
             <div>
@@ -180,7 +180,7 @@ function EditPlaceContent() {
                 required
                 value={form.certifFirstName}
                 onChange={(e) => update('certifFirstName', e.target.value)}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
             <div className="sm:col-span-2">
@@ -189,7 +189,7 @@ function EditPlaceContent() {
                 required
                 value={form.certifNumber}
                 onChange={(e) => update('certifNumber', e.target.value)}
-                className="w-full rounded-lg border px-4 py-2 focus:border-[#08717e] focus:outline-none"
+                className="w-full rounded-lg border px-4 py-2 focus:border-[#1E3A4C] focus:outline-none"
               />
             </div>
           </div>
@@ -199,7 +199,7 @@ function EditPlaceContent() {
           <button
             type="submit"
             disabled={loading}
-            className="rounded-lg bg-[#08717e] px-6 py-3 font-semibold text-white hover:bg-teal-800 disabled:opacity-50"
+            className="rounded-lg bg-[#A8D0E6] px-6 py-3 font-semibold text-white hover:bg-sky-900 disabled:opacity-50"
           >
             {loading ? 'Enregistrement...' : 'Enregistrer'}
           </button>

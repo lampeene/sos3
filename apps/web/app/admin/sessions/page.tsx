@@ -72,13 +72,13 @@ function SessionsContent() {
           placeholder="Rechercher (ville, centre...)"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="rounded-lg border px-4 py-2 w-full max-w-sm focus:border-[#08717e] focus:outline-none"
+          className="rounded-lg border px-4 py-2 w-full max-w-sm focus:border-[#1E3A4C] focus:outline-none"
         />
         <div className="flex items-center gap-4">
           <span className="text-sm text-gray-500">{total} stage(s)</span>
           <a
             href="/admin/sessions/new"
-            className="rounded-lg bg-[#08717e] px-4 py-2 text-sm font-semibold text-white hover:bg-teal-800"
+            className="rounded-lg bg-[#A8D0E6] px-4 py-2 text-sm font-semibold text-white hover:bg-sky-900"
           >
             + Nouveau stage
           </a>
@@ -133,7 +133,7 @@ function SessionsContent() {
                       {s.place.zipcode} {s.place.city}
                     </div>
                   </td>
-                  <td className="px-4 py-3 font-semibold text-[#08717e]">
+                  <td className="px-4 py-3 font-semibold text-[#1E3A4C]">
                     {s.price} €
                   </td>
                   <td className="px-4 py-3">
@@ -164,7 +164,7 @@ function SessionsContent() {
                   <td className="px-4 py-3 space-x-3">
                     <a
                       href={`/admin/sessions/${s.id}/edit`}
-                      className="text-[#08717e] hover:underline text-xs font-medium"
+                      className="text-[#1E3A4C] hover:underline text-xs font-medium"
                     >
                       Modifier
                     </a>
