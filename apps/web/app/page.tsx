@@ -69,9 +69,9 @@ export default function HomePage() {
       </section>
 
       {/* Steps */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-12 bg-gray-50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-gray-900">
               Comment récupérer vos points ?
             </h2>
@@ -116,9 +116,9 @@ export default function HomePage() {
       </section>
 
       {/* CTA */}      {/* Prochains stages */}
-      <section className="py-20 bg-white">
+      <section className="py-12 bg-white">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-gray-900">Prochains stages</h2>
             <p className="mt-4 text-lg text-gray-600">Consultez les prochaines dates disponibles</p>
           </div>
