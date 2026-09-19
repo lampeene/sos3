@@ -2,8 +2,8 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { sessionsApi, registrationsApi, paymentsApi } from '@/lib/api';
-import { getToken, isAuthenticated, setAuth } from '@/lib/auth';
+import { sessionsApi, registrationsApi, paymentsApi, authApi } from '@/lib/api';
+import { getToken, isAuthenticated, setAuth, getUser } from '@/lib/auth';
 import FileUpload from '@/components/upload/FileUpload';
 import { validateDocumentsForCase, DOCUMENT_REQUIREMENTS, CASE_LABELS } from '@/lib/document-validation';
 
@@ -109,6 +109,29 @@ function InscriptionForm() {
     return true;
   };
 
+  const handleNext = async () => {
+    if (currentStep === 1) {
+      setLoading(true);
+      setError('');
+      try {
+        const result = await authApi.register({
+          email: form.email,
+          password: form.password,
+          firstName: form.firstName,
+          lastName: form.lastName,
+        });
+        setAuth(result.access_token, result.user);
+        setCurrentStep((s) => Math.min(4, s + 1));
+      } catch (err: any) {
+        setError(err?.message || 'Impossible de créer le compte');
+      } finally {
+        setLoading(false);
+      }
+      return;
+    }
+    setCurrentStep((s) => Math.min(4, s + 1));
+  };
+
   // Create registration then redirect to PayPlug
   const handlePay = async () => {
     if (!sessionId || !session) {
@@ -145,9 +168,7 @@ function InscriptionForm() {
         {
           caseNumber: form.caseNumber,
           sessionId: Number(sessionId),
-          // userId will be taken from JWT on the backend in a real flow
-          // For now we send a placeholder – adapt when user is linked
-          userId: 1,
+          userId: getUser()?.id,
           drivingLicense: {
             drivingLicenseNumber: form.drivingLicenseNumber,
             placeOfIssue: form.placeOfIssue,
@@ -541,7 +562,7 @@ function InscriptionForm() {
             </button>
             {currentStep < 4 ? (
               <button
-                onClick={() => setCurrentStep((s) => Math.min(4, s + 1))}
+                onClick={handleNext}
                 disabled={!canGoNext() || loading}
                 className="rounded-lg bg-[#A8D0E6] px-6 py-2 font-medium text-white hover:bg-sky-900 disabled:opacity-40"
               >

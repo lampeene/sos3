@@ -79,6 +79,11 @@ export const authApi = {
       method: 'POST',
       body: { email, password },
     }),
+  register: (data: { email: string; password: string; firstName: string; lastName: string }) =>
+    api<{ access_token: string; user: any }>('/auth/register', {
+      method: 'POST',
+      body: data,
+    }),
 };
 
 // ========== Sessions ==========
