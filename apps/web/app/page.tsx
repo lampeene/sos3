@@ -6,9 +6,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center gap-3">
-              <span className="text-2xl font-bold tracking-tight">
-                SOS <span className="text-[#D9A759]">Permis à points</span>
-              </span>
+              <img src="/images/logo.png" alt="SOS Permis à points" className="h-10 w-auto" />
             </div>
             <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
               <a href="/" className="hover:text-[#D9A759] transition">
@@ -41,7 +39,7 @@ export default function HomePage() {
             </h1>
             <p className="mt-6 text-lg leading-8 text-sky-100">
               Stages de récupération de points agréés par les préfectures.
-              Des centres partout en France, des formateurs expérimentés.
+              Des centres au Pays Basque et dans les Landes, des formateurs expérimentés.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <a
