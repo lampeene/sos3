@@ -141,6 +141,9 @@ export default function StagesPage() {
                     {session.place.address1}, {session.place.zipcode}{' '}
                     {session.place.city}
                   </p>
+                  <p className="mt-1 text-sm text-gray-500">
+                    Horaires : Jour 1 : 8h15-12h30 / 13h30-16h30 · Jour 2 : 8h30-12h30 / 13h30-16h30
+                  </p>
                   <p className="mt-2 text-sm text-gray-500">
                     {session.freePlaces} place
                     {session.freePlaces > 1 ? 's' : ''} restante

@@ -87,6 +87,7 @@ export default function UpcomingSessions({ limit = 5 }: { limit?: number }) {
               <div>
                 <p className="font-semibold text-gray-900">{session.place.name}</p>
                 <p className="text-sm text-gray-500">{session.place.city} ({session.place.zipcode})</p>
+                <p className="text-xs text-gray-400 mt-0.5">Horaires : J1 8h15-12h30 / 13h30-16h30 · J2 8h30-12h30 / 13h30-16h30</p>
               </div>
             </div>
             <div className="flex items-center gap-4 sm:gap-6">
